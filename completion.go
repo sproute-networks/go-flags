@@ -108,7 +108,7 @@ func (c *completion) completeCommands(s *parseState, match string) []Completion 
 	n := make([]Completion, 0, len(s.command.commands))
 
 	for _, cmd := range s.command.commands {
-		if cmd.data != c && strings.HasPrefix(cmd.Name, match) {
+		if cmd.data != c && strings.HasPrefix(cmd.Name, match) && !cmd.Hidden {
 			n = append(n, Completion{
 				Item:        cmd.Name,
 				Description: cmd.ShortDescription,
